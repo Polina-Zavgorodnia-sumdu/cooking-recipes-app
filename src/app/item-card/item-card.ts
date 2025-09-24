@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Recipe } from '../core/models/recipe.model';
 
 @Component({
   selector: 'app-item-card',
-  imports: [],
+  standalone: true,
   templateUrl: './item-card.html',
-  styleUrl: './item-card.css'
+  styleUrls: ['./item-card.css']
 })
 export class ItemCard {
-
+  @Input() recipe!: Recipe;
 }
