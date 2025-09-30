@@ -29,3 +29,27 @@
   color: #555;
   padding: 0 10px 10px;
 }
+
+.tags {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.tag {
+  background-color: #FFCC99;
+  color: #59000A;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+.tag-hover {
+  background-color: #59000A; /* темний фон */
+  color: #FFCC99;           /* світлий текст */
+}
+

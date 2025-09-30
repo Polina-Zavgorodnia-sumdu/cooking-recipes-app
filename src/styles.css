@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+/* Загальні стилі */
+header, footer {
+  background-color: #59000A;
+  color: #FFDEBD;
+  padding: 15px 20px;
+  text-align: center;
+}
+
+/* Хедер */
+header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Основний контент */
+main {
+  padding: 20px;
+  min-height: calc(100vh - 120px); /* щоб футер не налазив на контент */
+  background-color: #FFDEBD;
+}
+
+/* Футер */
+footer {
+  font-size: 14px;
+  border-top: 2px solid #59000A; /* трохи темніша лінія зверху */
+}

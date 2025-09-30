@@ -4,4 +4,5 @@ export interface Recipe {
   description: string;   // короткий опис
   imageUrl: string;      // шлях або посилання на картинку
   ingredients: string[]; // список інгредієнтів
+  tags?: string[];   // теги
 }
