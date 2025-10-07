@@ -1,8 +1,20 @@
-<div class="recipes-list">
-  <app-item-card
-    *ngFor="let recipe of recipes"
-    [recipe]="recipe">
-  </app-item-card>
-</div>
+<main>
+  <!-- Поле пошуку під хедером -->
+  <div class="search-box">
+    <input
+      type="text"
+      placeholder="Пошук страви..."
+      [(ngModel)]="searchTerm">
+  </div>
+
+  <!-- Список карток -->
+  <div class="recipes-list">
+    <app-item-card
+      *ngFor="let recipe of filteredRecipes"
+      [recipe]="recipe"
+      (selectRecipe)="onRecipeSelected($event)">
+    </app-item-card>
+  </div>
+</main>
 
 

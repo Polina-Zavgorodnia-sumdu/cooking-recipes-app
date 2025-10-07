@@ -2,16 +2,25 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Recipe } from '../core/models/recipe.model';
 import { ItemCard } from '../item-card/item-card';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-items-list',
   standalone: true,
   templateUrl: './items-list.html',
   styleUrls: ['./items-list.css'],
-  imports: [CommonModule, ItemCard]   // 👈 підключаємо ngFor і компонент картки
+  imports: [CommonModule, ItemCard, FormsModule]   // підключаємо ngFor і компонент картки
 })
 
 export class ItemsList {
+  searchTerm: string = '';
+
+  get filteredRecipes(): Recipe[] {
+    return this.recipes.filter(r =>
+      r.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
+
   recipes: Recipe[] = [
     {
       id: 1,
@@ -70,4 +79,8 @@ export class ItemsList {
       tags: ['Мексиканська кухня', 'Вулична їжа']
     }
   ];
+  // Метод, який спрацьовує при виборі рецепта
+  onRecipeSelected(recipe: Recipe) {
+    console.log('Подія отримана у ItemsList! Обраний рецепт:', recipe.title);
+  }
 }

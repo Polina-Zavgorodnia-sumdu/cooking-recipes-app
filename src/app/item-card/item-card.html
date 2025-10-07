@@ -2,14 +2,15 @@
   <img [src]="recipe.imageUrl" alt="{{ recipe.title }}">
   <h2>{{ recipe.title }}</h2>
   <p>{{ recipe.description }}</p>
+  <button (click)="onSelect()">Детальніше</button>
 <!-- блок тегів -->
   <div class="tags" *ngIf="recipe.tags && recipe.tags.length > 0">
     <span
-      *ngFor="let tag of recipe.tags"
-      class="tag"
-      [ngClass]="{'tag-hover': hoveredTag === tag}"
       (mouseenter)="hoveredTag = tag"
-      (mouseleave)="hoveredTag = null">
+      (mouseleave)="hoveredTag = null"
+      *ngFor="let tag of recipe.tags"
+      [ngClass]="{'tag-hover': hoveredTag === tag}"
+      class="tag">
       {{ tag }}
     </span>
   </div>
