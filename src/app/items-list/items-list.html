@@ -4,7 +4,8 @@
     <input
       type="text"
       placeholder="Пошук страви..."
-      [(ngModel)]="searchTerm">
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="onSearchChange()" />
   </div>
 
   <!-- Список карток -->
