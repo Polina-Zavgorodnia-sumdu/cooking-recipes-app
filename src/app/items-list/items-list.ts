@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Recipe } from '../core/models/recipe.model';
 import { ItemCard } from '../item-card/item-card';
-import { DataService } from '../core/services/data';  // додано
+import { DataService } from '../core/services/data';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-items-list',
@@ -12,36 +13,38 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./items-list.css'],
   imports: [CommonModule, ItemCard, FormsModule]
 })
-export class ItemsList implements OnInit {
+export class ItemsList implements OnInit, OnDestroy {
   recipes: Recipe[] = [];
-  filteredRecipes: Recipe[] = [];  //додано
   searchTerm: string = '';
 
-  constructor(private dataService: DataService) {}  // інжекція сервісу
+  private recipesSubscription!: Subscription;
+
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.recipes = this.dataService.getItems();
-    this.filteredRecipes = this.recipes; // спочатку показуємо всі страви
+    // 🔹 Підписка на BehaviorSubject (recipes$)
+    this.recipesSubscription = this.dataService.recipes$.subscribe({
+      next: (data: Recipe[]) => {
+        this.recipes = data;
+      },
+      error: (err: any) => console.error('Помилка під час підписки:', err),
+      complete: () => console.log('Підписку завершено.')
+    });
   }
 
-  ngOnChanges(): void {
-    this.applyFilter();
-  }
-
-  //Фільтрація рецептів за введеним словом
-  applyFilter(): void {
-    const term = this.searchTerm.toLowerCase();
-    this.filteredRecipes = this.recipes.filter(recipe =>
-      recipe.title.toLowerCase().includes(term)
-    );
-  }
-
-  //Викликаємо фільтрацію при зміні поля вводу
+  // 🔹 Викликає фільтрацію в сервісі
   onSearchChange(): void {
-    this.applyFilter();
+    this.dataService.filterRecipes(this.searchTerm);
   }
 
-  onRecipeSelected(recipe: Recipe) {
-    console.log('Подія отримана у ItemsList! Обраний рецепт:', recipe.title);
+  onRecipeSelected(recipe: Recipe): void {
+    console.log('Обраний рецепт:', recipe.title);
+  }
+
+  ngOnDestroy(): void {
+    if (this.recipesSubscription) {
+      this.recipesSubscription.unsubscribe();
+      console.log('Відписка від BehaviorSubject виконана.');
+    }
   }
 }

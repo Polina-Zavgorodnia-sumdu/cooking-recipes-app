@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe.model';
+import { Observable, BehaviorSubject, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -64,7 +65,24 @@ export class DataService {
     }
   ];
 
-  getItems(): Recipe[] {
-    return this.recipes;
+  // BehaviorSubject з поточним станом
+  private recipesSubject = new BehaviorSubject<Recipe[]>(this.recipes);
+  // Observable для підписки
+  recipes$ = this.recipesSubject.asObservable();
+
+  constructor() {}
+
+  getItems(): Observable<Recipe[]> {
+    return of(this.recipes);
+  }
+
+  // Реактивна фільтрація (Виправлення TS2550)
+  filterRecipes(searchTerm: string): void {
+    const term = (searchTerm as any).toLowerCase();
+    const filtered = (this.recipes as any[]).filter((recipe: Recipe) =>
+      (recipe.title as any)?.toLowerCase().includes(term)
+    );
+
+    this.recipesSubject.next(filtered);
   }
 }
