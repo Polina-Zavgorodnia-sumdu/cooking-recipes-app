@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import { Recipe } from '../core/models/recipe.model';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-item-card',
@@ -9,7 +10,8 @@ import {NgClass, NgForOf, NgIf} from '@angular/common';
   imports: [
     NgForOf,
     NgIf,
-    NgClass
+    NgClass,
+    RouterLink
   ],
   styleUrls: ['./item-card.css']
 })

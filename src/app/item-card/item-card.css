@@ -53,3 +53,18 @@
   color: #FFCC99;           /* світлий текст */
 }
 
+.details-link {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 8px 16px;
+  background-color: #59000A;
+  color: #FFDEBD;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.details-link:hover {
+  background-color: #7a0010;
+}
+
