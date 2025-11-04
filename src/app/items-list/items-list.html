@@ -11,9 +11,8 @@
   <!-- Список карток -->
   <div class="recipes-list">
     <app-item-card
-      *ngFor="let recipe of recipes"
-      [recipe]="recipe"
-      (selectRecipe)="onRecipeSelected($event)">
+      *ngFor="let recipe of recipes$ | async"
+      [recipe]="recipe">
     </app-item-card>
   </div>
 </main>
