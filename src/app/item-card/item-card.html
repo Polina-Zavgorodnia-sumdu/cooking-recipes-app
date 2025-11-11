@@ -1,0 +1,17 @@
+<div class="card" appHoverHighlight>
+  <img [src]="recipe.imageUrl" alt="{{ recipe.title }}">
+  <h2>{{ recipe.title }}</h2>
+  <p>{{ recipe.description | shortenDescription:80 }}</p>
+  <a [routerLink]="['/items', recipe.id]" class="details-link">Детальніше</a>
+<!-- блок тегів -->
+  <div class="tags" *ngIf="recipe.tags && recipe.tags.length > 0">
+    <span
+      (mouseenter)="hoveredTag = tag"
+      (mouseleave)="hoveredTag = null"
+      *ngFor="let tag of recipe.tags"
+      [ngClass]="{'tag-hover': hoveredTag === tag}"
+      class="tag">
+      {{ tag }}
+    </span>
+  </div>
+</div>

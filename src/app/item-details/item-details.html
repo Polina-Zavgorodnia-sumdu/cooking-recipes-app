@@ -1,0 +1,25 @@
+<div *ngIf="recipe" class="details-container">
+  <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" class="details-img" />
+
+  <h2>{{ recipe.title }}</h2>
+  <p>{{ recipe.description }}</p>
+
+  <h3>Інгредієнти:</h3>
+  <ul>
+    <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+  </ul>
+
+  <div *ngIf="recipe.tags?.length" class="tags-section">
+    <h3>Теги:</h3>
+    <div class="tags">
+      <span *ngFor="let tag of recipe.tags" class="tag">{{ tag }}</span>
+    </div>
+  </div>
+
+  <a routerLink="/items" class="back-link">← Назад до списку</a>
+</div>
+
+<div *ngIf="!recipe">
+  <p>Рецепт не знайдено.</p>
+  <a routerLink="/items" class="back-link">← Повернутись</a>
+</div>

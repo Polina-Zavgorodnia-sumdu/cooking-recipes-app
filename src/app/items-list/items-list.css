@@ -1,0 +1,37 @@
+.recipes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* сітка */
+  gap: 16px;
+  padding: 20px;
+}
+
+.search-box {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.search-box input {
+  padding: 8px 12px;
+  width: 60%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.add-link {
+  display: inline-block;
+  background-color: #59000A;
+  color: #FFDEBD;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+.add-link:hover {
+  background-color: #7a0010;
+}
+.add-btn {
+  text-align: center;
+  margin: 20px 0;
+}
