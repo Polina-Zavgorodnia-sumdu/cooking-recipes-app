@@ -19,3 +19,19 @@
   font-size: 16px;
 }
 
+.add-link {
+  display: inline-block;
+  background-color: #59000A;
+  color: #FFDEBD;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+.add-link:hover {
+  background-color: #7a0010;
+}
+.add-btn {
+  text-align: center;
+  margin: 20px 0;
+}

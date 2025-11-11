@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DataService } from '../core/services/data';
 import { Recipe } from '../core/models/recipe.model';
 
@@ -21,8 +21,6 @@ export class ItemDetails implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.dataService.getItems().subscribe((recipes) => {
-      this.recipe = recipes.find(r => r.id === id);
-    });
+    this.recipe = this.dataService.getItemById(id);
   }
 }

@@ -1,0 +1,47 @@
+<div class="form-container">
+  <h2>Додати нову страву</h2>
+
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Назва страви:</label>
+      <input type="text" formControlName="title" />
+      <div class="error" *ngIf="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched">
+        Вкажіть назву (мінімум 3 символи)
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Опис:</label>
+      <textarea formControlName="description"></textarea>
+      <div class="error" *ngIf="recipeForm.get('description')?.invalid && recipeForm.get('description')?.touched">
+        Вкажіть опис (мінімум 10 символів)
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>URL зображення:</label>
+      <input type="text" formControlName="imageUrl" />
+      <div class="error" *ngIf="recipeForm.get('imageUrl')?.invalid && recipeForm.get('imageUrl')?.touched">
+        Вкажіть посилання на зображення
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Інгредієнти:</label>
+      <div formArrayName="ingredients">
+        <div *ngFor="let ing of ingredients.controls; let i = index">
+          <input [formControlName]="i" placeholder="Інгредієнт {{ i + 1 }}" />
+          <button type="button" (click)="removeIngredient(i)" *ngIf="ingredients.length > 1">✖</button>
+        </div>
+      </div>
+      <button type="button" (click)="addIngredient()">+ Додати інгредієнт</button>
+    </div>
+
+    <div class="form-group">
+      <label>Теги (через кому):</label>
+      <input type="text" formControlName="tags" />
+    </div>
+
+    <button type="submit" [disabled]="recipeForm.invalid">Додати</button>
+  </form>
+</div>
