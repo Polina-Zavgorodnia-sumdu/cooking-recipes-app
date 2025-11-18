@@ -59,8 +59,12 @@ export class ItemForm {
         : []
     };
 
-    this.dataService.addRecipe(newRecipe);
-    alert('Рецепт успішно додано!');
-    this.router.navigate(['/items']);
+    this.dataService.addRecipe(newRecipe).subscribe({
+      next: () => {
+        alert('Страву успішно додано!');
+        this.router.navigate(['/items']); // <--- повертаємось до списку
+      },
+      error: () => alert('Сталася помилка')
+    });
   }
 }
