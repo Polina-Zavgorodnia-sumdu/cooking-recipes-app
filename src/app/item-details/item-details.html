@@ -1,25 +1,24 @@
-<div *ngIf="recipe" class="details-container">
-  <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" class="details-img" />
+<div *ngIf="recipe$ | async as recipe; else loading" class="details-container">
+  <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" class="details-img">
 
   <h2>{{ recipe.title }}</h2>
   <p>{{ recipe.description }}</p>
 
   <h3>Інгредієнти:</h3>
   <ul>
-    <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+    <li *ngFor="let ing of recipe.ingredients">{{ ing }}</li>
   </ul>
 
   <div *ngIf="recipe.tags?.length" class="tags-section">
     <h3>Теги:</h3>
     <div class="tags">
-      <span *ngFor="let tag of recipe.tags" class="tag">{{ tag }}</span>
+      <span class="tag" *ngFor="let tag of recipe.tags">{{ tag }}</span>
     </div>
   </div>
 
-  <a routerLink="/items" class="back-link">← Назад до списку</a>
+  <a routerLink="/items" class="back-link">← Назад</a>
 </div>
 
-<div *ngIf="!recipe">
-  <p>Рецепт не знайдено.</p>
-  <a routerLink="/items" class="back-link">← Повернутись</a>
-</div>
+<ng-template #loading>
+  <p>Завантаження...</p>
+</ng-template>

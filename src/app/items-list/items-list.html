@@ -1,18 +1,17 @@
 <main>
-  <!-- Поле пошуку під хедером -->
   <div class="search-box">
     <input
       type="text"
       placeholder="Пошук страви..."
       [(ngModel)]="searchTerm"
-      (ngModelChange)="onSearchChange()" />
+      (ngModelChange)="onSearchChange()"
+    />
   </div>
 
   <div class="add-btn">
     <a routerLink="/add" class="add-link">+ Додати нову страву</a>
   </div>
 
-  <!-- Список карток -->
   <div class="recipes-list">
     <app-item-card
       *ngFor="let recipe of recipes$ | async"
@@ -20,5 +19,3 @@
     </app-item-card>
   </div>
 </main>
-
-
