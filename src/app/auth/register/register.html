@@ -1,0 +1,12 @@
+<div class="auth-container">
+  <h2>Реєстрація</h2>
+
+  <input [(ngModel)]="email" placeholder="Email">
+  <input [(ngModel)]="password" type="password" placeholder="Пароль">
+
+  <button class="auth-btn-submit" (click)="onRegister()">Створити акаунт</button>
+
+  <p style="color:green" *ngIf="success">
+    Успішно! Перехід до логіну...
+  </p>
+</div>

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import {apiInterceptor} from './core/interceptors/api-interceptor';
+import {authTokenInterceptor} from './core/interceptors/auth-token-interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,7 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([apiInterceptor])
+      withInterceptors([apiInterceptor, authTokenInterceptor])
     ),
     importProvidersFrom(CommonModule)
   ]
