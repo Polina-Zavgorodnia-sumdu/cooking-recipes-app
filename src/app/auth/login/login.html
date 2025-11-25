@@ -1,0 +1,15 @@
+<div class="auth-container">
+  <h2>Логін</h2>
+
+  <input [(ngModel)]="email" placeholder="Email">
+  <input [(ngModel)]="password" type="password" placeholder="Пароль">
+
+  <button class="auth-btn-submit" (click)="onLogin()">Увійти</button>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <p>
+    Ще немає акаунту?
+    <a routerLink="/register">Зареєструватися</a>
+  </p>
+</div>

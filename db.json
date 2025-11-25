@@ -1,4 +1,16 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "email": "test@test.com",
+      "password": "123456"
+    },
+    {
+      "id": "d769",
+      "email": "test2@test.com",
+      "password": "0000"
+    }
+  ],
   "recipes": [
     {
       "id": "1",

@@ -1,0 +1,27 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth';
+
+@Component({
+  selector: 'app-register',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './register.html',
+  styleUrls: ['./register.css']
+})
+export class RegisterComponent {
+  email = '';
+  password = '';
+  success = false;
+
+  constructor(private auth: AuthService, private router: Router) {}
+
+  onRegister() {
+    this.auth.register({ email: this.email, password: this.password }).subscribe(() => {
+      this.success = true;
+      setTimeout(() => this.router.navigate(['/login']), 1500);
+    });
+  }
+}

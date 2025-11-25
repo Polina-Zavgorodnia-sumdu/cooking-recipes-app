@@ -1,5 +1,19 @@
 <header>
   <h1>{{ title }}</h1>
+
+  <nav class="auth-box">
+    <!-- Якщо НЕ авторизований -->
+    <ng-container *ngIf="!(isAuth$ | async); else loggedIn">
+      <a routerLink="/login" class="auth-btn">Увійти</a>
+      <a routerLink="/register" class="auth-btn">Реєстрація</a>
+    </ng-container>
+
+    <!-- Якщо авторизований -->
+    <ng-template #loggedIn>
+      <span class="user-email">{{ userEmail }}</span>
+      <button (click)="logout()" class="logout-btn">Вийти</button>
+    </ng-template>
+  </nav>
 </header>
 
 <main>
