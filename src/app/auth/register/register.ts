@@ -11,7 +11,7 @@ import { AuthService } from '../auth';
   templateUrl: './register.html',
   styleUrls: ['./register.css']
 })
-export class RegisterComponent {
+export class Register {
   email = '';
   password = '';
   success = false;

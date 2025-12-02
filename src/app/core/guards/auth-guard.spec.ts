@@ -1,17 +1,43 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
+import { AuthGuard } from './auth-guard';
+import { AuthService } from '../../auth/auth';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
-import { authGuard } from './auth-guard';
-
-describe('authGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => authGuard(...guardParameters));
+describe('AuthGuard', () => {
+  let guard: AuthGuard;
+  let authMock: any;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    authMock = {
+      isAuthenticated: () => true
+    };
+
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule.withRoutes([])
+      ],
+      providers: [
+        AuthGuard,
+        { provide: AuthService, useValue: authMock }
+      ]
+    });
+
+    guard = TestBed.inject(AuthGuard);
   });
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+  it('має дозволяти доступ при логіні', () => {
+    expect(guard.canActivate()).toBeTrue();
+  });
+
+  it('має перенаправляти на /login при відсутності логіну', () => {
+    const router = TestBed.inject(Router);
+    const spy = spyOn(router, 'navigate');
+
+    authMock.isAuthenticated = () => false;
+    guard = TestBed.inject(AuthGuard);
+
+    expect(guard.canActivate()).toBeFalse();
+    expect(spy).toHaveBeenCalledWith(['/login']);
   });
 });
