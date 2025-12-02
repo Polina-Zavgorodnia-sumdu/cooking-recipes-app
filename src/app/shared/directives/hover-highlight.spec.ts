@@ -1,8 +1,27 @@
-import { HoverHighlight } from './hover-highlight';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { HoverHighlightDirective } from './hover-highlight';
 
-describe('HoverHighlight', () => {
-  it('should create an instance', () => {
-    const directive = new HoverHighlight();
-    expect(directive).toBeTruthy();
+@Component({
+  template: `<div appHoverHighlight>Test</div>`
+})
+class TestHostComponent {}
+
+describe('HoverHighlightDirective', () => {
+  let fixture: ComponentFixture<TestHostComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [],
+      imports: [HoverHighlightDirective, TestHostComponent]
+    });
+
+    fixture = TestBed.createComponent(TestHostComponent);
+    fixture.detectChanges();
+  });
+
+  it('створена директива', () => {
+    const element = fixture.nativeElement.querySelector('div');
+    expect(element).toBeTruthy();
   });
 });

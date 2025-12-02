@@ -7,7 +7,7 @@ import {RouterOutlet} from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.html',
   standalone: true,
-  imports: [Layout, ItemsList, RouterOutlet], // підключаємо Layout
+  imports: [Layout, RouterOutlet], // підключаємо Layout
 })
 export class App {}
 

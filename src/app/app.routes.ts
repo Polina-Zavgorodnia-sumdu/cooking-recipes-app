@@ -3,8 +3,8 @@ import { ItemsList } from './items-list/items-list';
 import { ItemDetails } from './item-details/item-details';
 import { ItemForm } from './item-form/item-form';
 import { AuthGuard } from './core/guards/auth-guard';
-import {LoginComponent} from './auth/login/login';
-import {RegisterComponent} from './auth/register/register';
+import {Login} from './auth/login/login';
+import {Register} from './auth/register/register';
 
 export const routes: Routes = [
   { path: 'items', component: ItemsList },
@@ -14,8 +14,8 @@ export const routes: Routes = [
   { path: 'add', component: ItemForm, canActivate: [AuthGuard] },
 
   // auth pages
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: Login },
+  { path: 'register', component: Register },
 
   { path: '', redirectTo: '/items', pathMatch: 'full' }
 ];

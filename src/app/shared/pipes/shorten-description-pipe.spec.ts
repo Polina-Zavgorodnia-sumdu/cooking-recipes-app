@@ -1,8 +1,13 @@
 import { ShortenDescriptionPipe } from './shorten-description-pipe';
 
 describe('ShortenDescriptionPipe', () => {
-  it('create an instance', () => {
-    const pipe = new ShortenDescriptionPipe();
-    expect(pipe).toBeTruthy();
+  const pipe = new ShortenDescriptionPipe();
+
+  it('повертає той самий текст, якщо він коротший за ліміт', () => {
+    expect(pipe.transform('Привіт', 10)).toBe('Привіт');
+  });
+
+  it('обрізає текст та додає …', () => {
+    expect(pipe.transform('Дуже довгий опис', 5)).toBe('Дуже …');
   });
 });
